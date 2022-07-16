@@ -32,29 +32,20 @@ function init() {
     // need to use past present and future time with in a loop 
 
     function timeSlots() {
-        var timeslots = $('.time-block');
-        
-        for (var i = 0; i < timeslots.length; i++) {
-            var time = moment(timeslots[i].attr("id"), 'H');
-            // Uncaught TypeError: timeslots[i].attr is not a function
-            // at timeSlots (script.js:38:44)
-            // at HTMLDocument.init (script.js:10:5)
-            // at j (jquery.min.js:2:29999)
-            // at k (jquery.min.js:2:30313)
-            console.log(time); 
-            var timeNow = moment();
-            console.log(time); 
-            console.log(timeslots); 
+        $('.time-block').each(function() {
+            var time = $(this).attr('id');
+            console.log(time); // gets "hour-9 etc"
             
-            if (timeNow > time) {
-                timeslots[i].classList.add('past');
-            } else if (timeNow < time) {
-                timeslots[i].classList.add('future');
-            } else {
-                timeslots[i].classList.add('present');
-                // working for time past and future but not present 
-            }
+            // if (timeNow > time) {
+            //     timeslots[i].classList.add('past');
+            // } else if (timeNow < time) {
+            //     timeslots[i].classList.add('future');
+            // } else {
+            //     timeslots[i].classList.add('present');
+            //     // working for time past and future but not present 
+            // }
         }
+        )
     }
 
 
