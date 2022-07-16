@@ -6,6 +6,8 @@ $(init);
 function init() {
     var now = moment();
     $('#currentDay').text(now.format('M / Do / YYYY'));
+
+    timeSlots();
     }
 
 
@@ -25,3 +27,28 @@ function init() {
     // DDD DDDD	    1..365	Day of year
     // X	        1410715640.579	Unix timestamp
     // x	        1410715640579	Unix ms timestamp
+
+
+    // need to use past present and future time with in a loop 
+
+    function timeSlots() {
+        var timeslots = $('.time-block');
+        
+        for (var i = 0; i < timeslots.length; i++) {
+            var time = moment(timeslots[i].id, 'H');
+            var timeNow = moment();
+            console.log(time); 
+            console.log(timeslots); 
+            
+            if (timeNow > time) {
+                timeslots[i].classList.add('past');
+            } else if (timeNow < time) {
+                timeslots[i].classList.add('future');
+            } else {
+                timeslots[i].classList.add('present');
+                // working for time past and future but not present 
+            }
+        }
+    }
+
+
