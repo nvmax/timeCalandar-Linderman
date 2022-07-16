@@ -33,11 +33,10 @@ function init() {
 
     function timeSlots() {
         $('.time-block').each(function() {
-            var time = $(this).attr('id');
-            console.log(time); // gets "hour-9 etc"
-            var hour = time.split('-')[1];
-            console.log(hour); // gets 9 etc
-            // need current time to base off of
+            // combined both sections into one parseint to return time
+            var time = parseInt($(this).attr('id').split('-')[1]);
+            console.log(time);
+            
             var currenttime = moment().format("H"); 
             console.log(currenttime); // returns hour in military time
 
