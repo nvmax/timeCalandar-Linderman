@@ -9,9 +9,9 @@ function init() {
 
     timeSlots();
     $(".saveBtn").on("click", save);
-    save();
+    //save removed it was saving undefined
     storage();
-    var countdown = setInterval(timeSlots, 1000)
+    var countdown = setInterval(timeSlots, 60000)
     console.log(countdown)
     }
 
@@ -35,42 +35,45 @@ function init() {
 
 
     // need to use past present and future time with in a loop 
-
+    // refacted if statments with info gathered from https://www.youtube.com/watch?v=EumXak7TyQ0
     function timeSlots() {
         $('.time-block').each(function() {
             // combined both sections into one parseint to return time
             var time = parseInt($(this).attr('id').split('-')[1]);
-            console.log(time);
-            
+            console.log(time);            
             var currenttime = moment().format("H"); 
             console.log(currenttime); // returns hour in military time
             // remove the class of past present and future worked with jessica lane 
-
-            if (time < currenttime) {
-                $(this).addClass('past'); // working changing color of past to grey
-            }else if (time == currenttime) { // was not working had === jessica lane fixed it with ==
-                $(this).addClass('present'); // not working colors this green 
-            }else {
-                $(this).addClass('future'); // working changing color of future to green
-
-            }
+            $(this).removeClass("past present future"); // put back in 
+            if (time < currenttime) return $(this).addClass('past'); // working changing color of past to grey
+            if (time > currenttime) return $(this).addClass('future'); // was not working had === jessica lane fixed it with ==
+            return $(this).addClass('present'); // working changing color of future to green
         }
         );
-    }
+    }   
+    
 
 // save function to local storage
 function save() {
+    // gets info from ID of index.html
     var bId = $(this).parent().attr("id");
-    
+    // saves to local storage     
     localStorage.setItem(moment().format("MDYY") + bId, $("#" + bId + " textarea").val());
 };
 
 function storage() {
+    // gets info from timblock and loops 
     $(".time-block").each(function() {
         var bId = $(this).attr("id");
         $("#" + bId + " textarea").text(localStorage.getItem(moment().format("MDYY") + bId));
     });
 }
+
+$(".time-block").on("dblclick", function() {
+    var bId = $(this).attr("id");
+    $("#" + bId + " textarea").val("");
+    localStorage.removeItem(moment().format("MDYY") + bId);
+});
 
 
     
