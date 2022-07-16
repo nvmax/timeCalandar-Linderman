@@ -35,6 +35,9 @@ function init() {
         $('.time-block').each(function() {
             var time = $(this).attr('id');
             console.log(time); // gets "hour-9 etc"
+            var hour = time.split('-')[1];
+            console.log(hour); // gets 9 etc
+
             
             // if (timeNow > time) {
             //     timeslots[i].classList.add('past');
