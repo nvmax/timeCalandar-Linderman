@@ -40,6 +40,11 @@ function init() {
             var currenttime = moment().format("H"); 
             console.log(currenttime); // returns hour in military time
 
+            if (time < currenttime) {
+                $(this).addClass('past'); // working changing color of past to grey
+            }
+
+
 
         //     if (hour > time) {
         //         selectiontime[i].classList.add('past');
