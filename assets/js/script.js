@@ -37,18 +37,21 @@ function init() {
             console.log(time); // gets "hour-9 etc"
             var hour = time.split('-')[1];
             console.log(hour); // gets 9 etc
+            // need current time to base off of
+            var currenttime = moment().format("H"); 
+            console.log(currenttime); // returns hour in military time
 
-            
-            // if (timeNow > time) {
-            //     timeslots[i].classList.add('past');
-            // } else if (timeNow < time) {
-            //     timeslots[i].classList.add('future');
-            // } else {
-            //     timeslots[i].classList.add('present');
-            //     // working for time past and future but not present 
-            // }
+
+        //     if (hour > time) {
+        //         selectiontime[i].classList.add('past');
+        //     } else if (hour < time) {
+        //         selectiontime[i].classList.add('future');
+        //     } else {
+        //         selectiontim[i].classList.add('present');
+                
+        //     }
         }
-        )
+         )
     }
 
 
