@@ -5,9 +5,14 @@ $(init);
 // need current time and date for index page to display
 function init() {
     var now = moment();
-    $('#currentDay').text(now.format('M / Do / YYYY'));
+    $('#currentDay').text(now.format('MMM  Do  YYYY'));
 
     timeSlots();
+    $(".saveBtn").on("click", save);
+    save();
+    storage();
+    var countdown = setInterval(timeSlots, 1000)
+    console.log(countdown)
     }
 
 
@@ -39,23 +44,35 @@ function init() {
             
             var currenttime = moment().format("H"); 
             console.log(currenttime); // returns hour in military time
+            // remove the class of past present and future worked with jessica lane 
 
             if (time < currenttime) {
                 $(this).addClass('past'); // working changing color of past to grey
+            }else if (time == currenttime) { // was not working had === jessica lane fixed it with ==
+                $(this).addClass('present'); // not working colors this green 
+            }else {
+                $(this).addClass('future'); // working changing color of future to green
+
             }
-
-
-
-        //     if (hour > time) {
-        //         selectiontime[i].classList.add('past');
-        //     } else if (hour < time) {
-        //         selectiontime[i].classList.add('future');
-        //     } else {
-        //         selectiontim[i].classList.add('present');
-                
-        //     }
         }
-         )
+        );
     }
+
+// save function to local storage
+function save() {
+    var bId = $(this).parent().attr("id");
+    
+    localStorage.setItem(moment().format("MDYY") + bId, $("#" + bId + " textarea").val());
+};
+
+function storage() {
+    $(".time-block").each(function() {
+        var bId = $(this).attr("id");
+        $("#" + bId + " textarea").text(localStorage.getItem(moment().format("MDYY") + bId));
+    });
+}
+
+
+    
 
 
