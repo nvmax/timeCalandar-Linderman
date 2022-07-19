@@ -16,7 +16,9 @@ Allows user to enter in notes in specific times of the day.  Time slots are colo
 
 Data is saved in local storage. User can delete data from local storage using double click on the time slots text area.
 
-Time is refreshed every 60 seconds to check if time has changed
+Time is refreshed every second seconds to updating the time by second.
+
+Bonus option of deletion of timeblocks, using double click on the tiem slot text area will remove data from local storage.
 
 
 
